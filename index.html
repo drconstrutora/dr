@@ -252,24 +252,22 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Portfólio (AJUSTADO PARA MOBILE) */
+        /* Portfólio */
         .obras-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            /* Mudança de 350px para 150px para permitir 2 colunas em telas pequenas */
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
         }
 
         .obra-card {
             position: relative;
-            height: 300px; /* Reduzido levemente para mobile */
+            height: 300px;
             overflow: hidden;
             background: #000;
         }
 
-        /* Desktop: Mantém altura original */
         @media (min-width: 769px) {
             .obra-card { height: 450px; }
             .obras-grid { gap: 20px; }
@@ -289,7 +287,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 20px; /* Reduzido para mobile */
+            padding: 20px;
             opacity: 0;
             transition: var(--transition-fast);
             z-index: 6;
@@ -301,12 +299,12 @@
         .obra-overlay h3 { 
             color: var(--accent); 
             margin-bottom: 5px; 
-            font-size: 1rem; /* Ajuste para mobile */
+            font-size: 1rem;
         }
         
         .obra-overlay p { 
             color: var(--accent-light); 
-            font-size: 0.75rem; /* Ajuste para mobile */
+            font-size: 0.75rem;
             letter-spacing: 1px;
             line-height: 1.2;
         }
@@ -315,7 +313,7 @@
             cursor: pointer;
         }
 
-        /* Seção Sobre Nós / Benefícios */
+        /* Seção Sobre Nós */
         .sobre-nos {
             background-color: #fff;
             padding: 100px 20px;
@@ -455,14 +453,14 @@
             nav ul { display: none; }
             .sobre-texto h2 { font-size: 2rem; }
             nav { gap: 1rem; }
-            section { padding: 60px 15px; } /* Seções um pouco menores no mobile */
+            section { padding: 60px 15px; }
             .section-title { font-size: 1.8rem; margin-bottom: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/5599991617884" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/5599991617884?text=Olá,%20vim%20pelo%20site%20e%20queria%20fazer%20um%20orçamento." class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -492,7 +490,7 @@
             <div class="banner-overlay">
                 <h2>Onde a Engenharia Encontra a Arte</h2>
                 <p>Projetos residenciais e áreas de lazer de alto padrão em Açailândia.</p>
-                <a href="https://wa.me/5599991617884" target="_blank" class="btn-cta">Solicitar Orçamento</a>
+                <a href="https://wa.me/5599991617884?text=Olá,%20vim%20pelo%20site%20e%20queria%20fazer%20um%20orçamento." target="_blank" class="btn-cta">Solicitar Orçamento</a>
             </div>
         </div>
         <div class="banner-slide">
@@ -540,7 +538,6 @@
     <section id="obras">
         <h2 class="section-title">Obras Recentes</h2>
         <div class="obras-grid">
-            
             <div class="obra-card video-card">
                 <a href="video1.mp4" class="portfolio-lightbox" data-type="video">
                     <video autoplay muted loop playsinline>
@@ -548,11 +545,10 @@
                     </video>
                     <div class="obra-overlay">
                         <h3>D&R em Movimento</h3>
-                        <p>Apenas um pequeno movimento de exemplo para você.</p>
+                        <p>Acompanhe o processo construtivo.</p>
                     </div>
                 </a>
             </div>
-
             <div class="obra-card">
                 <a href="piscina 2.jpg" class="portfolio-lightbox">
                     <img src="piscina 2.jpg" alt="Refúgio Urbano">
@@ -605,15 +601,13 @@
         <div class="sobre-container">
             <div class="sobre-texto">
                 <h2>Mais que construções, realizamos sonhos.</h2>
-                <p>De Açailândia - MA, a D&R Construtora consolidou sua marca através da precisão técnica e do respeito absoluto ao design arquitetônico. Ser nosso parceiro é ter a tranquilidade de uma obra gerida por especialistas.</p>
-                
+                <p>De Açailândia - MA, a D&R Construtora consolidou sua marca através da precisão técnica e do respeito absoluto ao design arquitetônico.</p>
                 <ul class="beneficios-lista">
-                    <li><i class="fas fa-check-circle"></i> <span><strong>Transparência Total:</strong> Relatórios periódicos sobre o andamento e custos da sua obra.</span></li>
-                    <li><i class="fas fa-check-circle"></i> <span><strong>Equipe Própria:</strong> Mão de obra qualificada e treinada nos mais rigorosos padrões de acabamento.</span></li>
-                    <li><i class="fas fa-check-circle"></i> <span><strong>Suporte Técnico:</strong> Presentes do início da fundação ao último detalhe da obra.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Transparência Total:</strong> Relatórios periódicos sobre o andamento e custos.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Equipe Própria:</strong> Mão de obra qualificada e treinada.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Suporte Técnico:</strong> Do início da fundação ao último detalhe.</span></li>
                 </ul>
             </div>
-            
             <div class="sobre-stats">
                 <div class="stat-box">
                     <span class="stat-number">10+</span>
