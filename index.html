@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&R Construtora - Engenharia de Alto Padrão</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.0/simple-lightbox.min.css">
+    
+    <style>
+        :root {
+            --primary: #0d2137;      
+            --accent: #c5a059;       
+            --accent-light: #e2c996;
+            --text-dark: #2d2d2d;
+            --text-light: #f4f4f4;
+            --bg-light: #fafafa;
+            --transition-slow: all 1.5s ease-in-out;
+            --transition-fast: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Header */
+        header {
+            background: rgba(13, 33, 55, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1.2rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+            transition: var(--transition-fast);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        .header-social a {
+            color: white;
+            font-size: 1.3rem;
+            transition: var(--transition-fast);
+        }
+
+        .header-social a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* BANNER */
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .banner-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out; 
+            z-index: 1;
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5);
+            transform: scale(1.1);
+            transition: transform 8s linear; 
+        }
+
+        .banner-slide.active img {
+            transform: scale(1);
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 900px;
+            color: white;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .banner-overlay h2 {
+            font-size: clamp(2.2rem, 6vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-fast);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            border: 1px solid var(--accent);
+        }
+
+        .btn-cta:hover {
+            background-color: transparent;
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Diferenciais */
+        .diferenciais {
+            background: var(--primary);
+            color: white;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .diferencial-item {
+            text-align: center;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .diferencial-item i {
+            display: block;
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        /* Seções Gerais */
+        section { padding: 100px 20px; }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 4rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 20px auto;
+        }
+
+        /* Grade de Serviços */
+        .servicos-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .servico-card {
+            background: #fff;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: var(--transition-fast);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .servico-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .servico-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Portfólio (AJUSTADO PARA MOBILE) */
+        .obras-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            /* Mudança de 350px para 150px para permitir 2 colunas em telas pequenas */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .obra-card {
+            position: relative;
+            height: 300px; /* Reduzido levemente para mobile */
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* Desktop: Mantém altura original */
+        @media (min-width: 769px) {
+            .obra-card { height: 450px; }
+            .obras-grid { gap: 20px; }
+        }
+
+        .obra-card img, .obra-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .obra-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13,33,55,0.95), transparent 70%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px; /* Reduzido para mobile */
+            opacity: 0;
+            transition: var(--transition-fast);
+            z-index: 6;
+        }
+
+        .obra-card:hover img, .obra-card:hover video { transform: scale(1.1); }
+        .obra-card:hover .obra-overlay { opacity: 1; }
+
+        .obra-overlay h3 { 
+            color: var(--accent); 
+            margin-bottom: 5px; 
+            font-size: 1rem; /* Ajuste para mobile */
+        }
+        
+        .obra-overlay p { 
+            color: var(--accent-light); 
+            font-size: 0.75rem; /* Ajuste para mobile */
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .video-card {
+            cursor: pointer;
+        }
+
+        /* Seção Sobre Nós / Benefícios */
+        .sobre-nos {
+            background-color: #fff;
+            padding: 100px 20px;
+        }
+
+        .sobre-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            align-items: center;
+        }
+
+        .sobre-texto h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .sobre-texto p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .beneficios-lista {
+            list-style: none;
+        }
+
+        .beneficios-lista li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .beneficios-lista i {
+            color: var(--accent);
+            margin-top: 5px;
+        }
+
+        .sobre-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: var(--bg-light);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+        }
+
+        /* WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(37,211,102,0.3);
+            z-index: 1001;
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #999;
+            padding: 80px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .footer-section i { color: var(--accent); margin-right: 10px; }
+
+        .footer-section a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .sobre-texto h2 { font-size: 2rem; }
+            nav { gap: 1rem; }
+            section { padding: 60px 15px; } /* Seções um pouco menores no mobile */
+            .section-title { font-size: 1.8rem; margin-bottom: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/5599991617884" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">D&R CONSTRUTORA</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#servicos">Especialidades</a></li>
+                    <li><a href="#obras">Portfólio</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <div class="header-social">
+                    <a href="https://www.instagram.com/d.r.construtoraz?igsh=enN2eTgyNXQ1NjQx" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="banner-container" id="home">
+        <div class="banner-slide active">
+            <img src="banner1.jpg" alt="Piscina Luxo">
+            <div class="banner-overlay">
+                <h2>Onde a Engenharia Encontra a Arte</h2>
+                <p>Projetos residenciais e áreas de lazer de alto padrão em Açailândia.</p>
+                <a href="https://wa.me/5599991617884" target="_blank" class="btn-cta">Solicitar Orçamento</a>
+            </div>
+        </div>
+        <div class="banner-slide">
+            <img src="banner2.png" alt="Arquitetura">
+            <div class="banner-overlay">
+                <h2>Piscinas que Inspiram</h2>
+                <p>Sua área de lazer transformada em um resort particular.</p>
+                <a href="#obras" class="btn-cta">Ver Portfólio</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="diferenciais">
+        <div class="diferencial-item"><i class="fas fa-gem"></i>Acabamento Premium</div>
+        <div class="diferencial-item"><i class="fas fa-hard-hat"></i>Gestão Especializada</div>
+        <div class="diferencial-item"><i class="fas fa-calendar-check"></i>Prazo Garantido</div>
+    </div>
+
+    <section id="servicos">
+        <h2 class="section-title">Nossas Especialidades</h2>
+        <div class="servicos-grid">
+            <div class="servico-card">
+                <i class="fas fa-home servico-icon"></i>
+                <h3>Residências</h3>
+                <p>Construções exclusivas com foco em arquitetura contemporânea.</p>
+            </div>
+            <div class="servico-card">
+                <i class="fas fa-swimming-pool servico-icon"></i>
+                <h3>Piscinas & Spas</h3>
+                <p>Especialistas em concreto armado e revestimentos nobres.</p>
+            </div>
+            <div class="servico-card">
+                <i class="fas fa-tools servico-icon"></i>
+                <h3>Reformas em Geral</h3>
+                <p>Excelência em assentamento de porcelanatos e renovação de ambientes.</p>
+            </div>
+            <div class="servico-card">
+                <i class="fas fa-utensils servico-icon"></i>
+                <h3>Espaços Gourmet</h3>
+                <p>Design funcional para os seus melhores momentos de lazer.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="obras">
+        <h2 class="section-title">Obras Recentes</h2>
+        <div class="obras-grid">
+            
+            <div class="obra-card video-card">
+                <a href="video1.mp4" class="portfolio-lightbox" data-type="video">
+                    <video autoplay muted loop playsinline>
+                        <source src="video1.mp4" type="video/mp4">
+                    </video>
+                    <div class="obra-overlay">
+                        <h3>D&R em Movimento</h3>
+                        <p>Apenas um pequeno movimento de exemplo para você.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="obra-card">
+                <a href="piscina 2.jpg" class="portfolio-lightbox">
+                    <img src="piscina 2.jpg" alt="Refúgio Urbano">
+                    <div class="obra-overlay">
+                        <h3>Refúgio Urbano</h3>
+                        <p>Piscina com iluminação automatizada.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="obra-card">
+                <a href="obra 2.jpg" class="portfolio-lightbox">
+                    <img src="obra 2.jpg" alt="Mansão Contemporânea">
+                    <div class="obra-overlay">
+                        <h3>Obra Contemporânea</h3>
+                        <p>Fachada em vidro e concreto aparente.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="obra-card">
+                <a href="obra 3.jpg" class="portfolio-lightbox">
+                    <img src="obra 3.jpg" alt="Lazer Completo">
+                    <div class="obra-overlay">
+                        <h3>Lazer Completo</h3>
+                        <p>Integração entre gourmet e piscina.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="obra-card">
+                <a href="interior1.jpg" class="portfolio-lightbox">
+                    <img src="interior1.jpg" alt="Acabamento Premium">
+                    <div class="obra-overlay">
+                        <h3>Design de Interiores</h3>
+                        <p>Acabamentos em mármore e porcelanato.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="obra-card">
+                <a href="piscina 6.jpg" class="portfolio-lightbox">
+                    <img src="piscina 6.jpg" alt="Área Externa">
+                    <div class="obra-overlay">
+                        <h3>Jardim e piscina</h3>
+                        <p>Conforto e sofisticação ao ar livre.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="sobre-nos">
+        <div class="sobre-container">
+            <div class="sobre-texto">
+                <h2>Mais que construções, realizamos sonhos.</h2>
+                <p>De Açailândia - MA, a D&R Construtora consolidou sua marca através da precisão técnica e do respeito absoluto ao design arquitetônico. Ser nosso parceiro é ter a tranquilidade de uma obra gerida por especialistas.</p>
+                
+                <ul class="beneficios-lista">
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Transparência Total:</strong> Relatórios periódicos sobre o andamento e custos da sua obra.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Equipe Própria:</strong> Mão de obra qualificada e treinada nos mais rigorosos padrões de acabamento.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Suporte Técnico:</strong> Presentes do início da fundação ao último detalhe da obra.</span></li>
+                </ul>
+            </div>
+            
+            <div class="sobre-stats">
+                <div class="stat-box">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Anos de Experiência</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Obras Entregues</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Satisfação</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">24h</span>
+                    <span class="stat-label">Suporte na Obra</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>D&R CONSTRUTORA</h3>
+                <p>Entregando excelência técnica em Açailândia - MA e região.</p>
+            </div>
+            <div class="footer-section">
+                <h3>CONTATO</h3>
+                <p><i class="fas fa-envelope"></i> drconstrutora2016@gmail.com</p>
+                <p><i class="fas fa-phone"></i> (99) 99161-7884</p>
+                <p><i class="fas fa-map-marker-alt"></i> Açailândia - MA</p>
+            </div>
+            <div class="footer-section">
+                <h3>REDES SOCIAIS</h3>
+                <div style="font-size: 1.5rem; display: flex; gap: 20px;">
+                    <a href="https://www.instagram.com/d.r.construtoraz?igsh=enN2eTgyNXQ1NjQx" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 D&R Construtora. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.0/simple-lightbox.min.js"></script>
+    <script>
+        var lightbox = new SimpleLightbox('.portfolio-lightbox', {
+            overlayOpacity: 0.9,
+            navText: ['<i class="fas fa-chevron-left"></i>','<i class="fas fa-chevron-right"></i>'],
+            captionDelay: 250,
+            urlAttribute: 'href',
+            fileExt: 'png|jpg|jpeg|gif|mp4|webm',
+            videoRegex: /mp4|webm|youtube\.com|vimeo\.com/i,
+            alertError: false
+        });
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.banner-slide');
+        function nextSlide() {
+            if(slides.length === 0) return;
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 6000);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
