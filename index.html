@@ -293,10 +293,10 @@
         .obra-card {
             position: relative;
             height: 280px;
-            overflow: hidden;
-            background: #000;
+            overflow: hidden; /* Mantém o conteúdo dentro dos limites */
             display: none; 
-            border-radius: 12px; /* Cantos arredondados adicionados aqui */
+            border-radius: 12px;
+            background: transparent; /* Alterado de #000 para transparente para remover cantos pretos */
         }
 
         .obra-card.visible {
@@ -308,7 +308,8 @@
             height: 100%;
             object-fit: cover;
             transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border-radius: 12px; /* Garante que a imagem siga o arredondamento */
+            border-radius: 12px;
+            display: block;
         }
 
         .obra-overlay {
@@ -323,7 +324,7 @@
             transition: var(--transition-fast);
             z-index: 6;
             pointer-events: none;
-            border-radius: 12px; /* Overlay também arredondada */
+            border-radius: 12px;
         }
 
         .obra-card:hover img, .obra-card:hover video { transform: scale(1.1); }
@@ -504,14 +505,21 @@
             .section-title { font-size: 1.8rem; margin-bottom: 2.5rem; }
             
             .obras-grid {
-                grid-template-columns: repeat(3, 1fr); /* Ajustado para 3 colunas em celulares */
-                gap: 8px; /* Gap um pouco menor para caber melhor 3 itens */
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 8px; 
             }
             .obra-card {
-                height: 120px; /* Altura reduzida para manter a proporção com 3 colunas */
-                border-radius: 8px; /* Cantos levemente menos arredondados em telas pequenas */
+                height: 120px; 
+                border-radius: 8px;
+                background: transparent; /* Garante que no mobile também fique sem fundo preto */
             }
-            .obra-overlay h3 { font-size: 0.6rem; } /* Ajuste de texto para colunas menores */
+            .obra-card img, .obra-card video {
+                border-radius: 8px;
+            }
+            .obra-overlay {
+                border-radius: 8px;
+            }
+            .obra-overlay h3 { font-size: 0.6rem; } 
             .obra-overlay p { font-size: 0.5rem; }
         }
     </style>
