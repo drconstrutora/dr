@@ -706,18 +706,27 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.0/simple-lightbox.min.js"></script>
     <script>
-        // Inicialização Lightbox
-        var lightbox = new SimpleLightbox('.portfolio-lightbox', {
-            overlayOpacity: 0.9,
-            navText: ['<i class="fas fa-chevron-left"></i>','<i class="fas fa-chevron-right"></i>'],
-            captionDelay: 250,
-            urlAttribute: 'href',
-            fileExt: 'png|jpg|jpeg|gif|mp4|webm',
-            videoRegex: /mp4|webm|youtube\.com|vimeo\.com/i,
-            alertError: false,
-            enableKeyboard: true,
-            close: true
-        });
+        // Variável global do Lightbox
+        let lightbox;
+
+        function initLightbox() {
+            // Se já existir, destrói para resetar a lista de imagens
+            if (lightbox) {
+                lightbox.destroy();
+            }
+            // Inicializa apenas nos links que têm a classe 'active-lightbox'
+            lightbox = new SimpleLightbox('.active-lightbox', {
+                overlayOpacity: 0.9,
+                navText: ['<i class="fas fa-chevron-left"></i>','<i class="fas fa-chevron-right"></i>'],
+                captionDelay: 250,
+                urlAttribute: 'href',
+                fileExt: 'png|jpg|jpeg|gif|mp4|webm',
+                videoRegex: /mp4|webm|youtube\.com|vimeo\.com/i,
+                alertError: false,
+                enableKeyboard: true,
+                close: true
+            });
+        }
 
         // Banner Slideshow
         let currentSlide = 0;
@@ -737,7 +746,7 @@
             currentFilter = category;
             
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            if(event) event.target.classList.add('active');
+            if(event && event.target.classList.contains('filter-btn')) event.target.classList.add('active');
 
             const allCards = document.querySelectorAll('.obra-card');
             const btnShowMore = document.getElementById('btn-show-more');
@@ -745,11 +754,14 @@
             let hasExtra = false;
 
             allCards.forEach(card => {
+                const link = card.querySelector('a');
                 card.classList.remove('visible');
+                link.classList.remove('active-lightbox'); // Remove de todos primeiro
                 
                 if (category === 'todos') {
                     if (!card.classList.contains('extra')) {
                         card.classList.add('visible');
+                        link.classList.add('active-lightbox');
                     } else {
                         hasExtra = true;
                     }
@@ -757,6 +769,7 @@
                     if (card.classList.contains('item-' + category)) {
                         if (!card.classList.contains('extra')) {
                             card.classList.add('visible');
+                            link.classList.add('active-lightbox');
                         } else {
                             hasExtra = true;
                         }
@@ -766,7 +779,8 @@
 
             btnShowMore.style.display = hasExtra ? 'block' : 'none';
             btnShowLess.style.display = 'none';
-            lightbox.refresh();
+            
+            initLightbox(); // Reinicia o lightbox com as fotos visíveis
         }
 
         function showMore() {
@@ -774,28 +788,30 @@
             allExtraCards.forEach(card => {
                 if (currentFilter === 'todos' || card.classList.contains('item-' + currentFilter)) {
                     card.classList.add('visible');
+                    card.querySelector('a').classList.add('active-lightbox');
                 }
             });
             document.getElementById('btn-show-more').style.display = 'none';
             document.getElementById('btn-show-less').style.display = 'block';
-            lightbox.refresh();
+            
+            initLightbox(); // Atualiza para incluir os novos itens
         }
 
         function showLess() {
             const allExtraCards = document.querySelectorAll('.obra-card.extra');
             allExtraCards.forEach(card => {
                 card.classList.remove('visible');
+                card.querySelector('a').classList.remove('active-lightbox');
             });
             document.getElementById('btn-show-more').style.display = 'block';
             document.getElementById('btn-show-less').style.display = 'none';
             
-            // Scroll suave de volta para o topo da seção portfólio
             window.scrollTo({
                 top: document.getElementById('obras').offsetTop - 80,
                 behavior: 'smooth'
             });
             
-            lightbox.refresh();
+            initLightbox(); // Atualiza para remover os itens escondidos
         }
 
         // Smooth Scroll
@@ -815,7 +831,7 @@
             });
         });
 
-        // Inicializar o filtro
+        // Inicializar o filtro ao carregar
         window.onload = () => filterPortfolio('todos');
     </script>
 </body>
