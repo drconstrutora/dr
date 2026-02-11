@@ -320,6 +320,7 @@
             opacity: 0;
             transition: var(--transition-fast);
             z-index: 6;
+            pointer-events: none;
         }
 
         .obra-card:hover img, .obra-card:hover video { transform: scale(1.1); }
@@ -566,7 +567,7 @@
             <div class="servico-card">
                 <i class="fas fa-home servico-icon"></i>
                 <h3>Residências</h3>
-                <p>Construções exclusivas com focus em arquitetura contemporânea.</p>
+                <p>Construções exclusivas com foco em arquitetura contemporânea.</p>
             </div>
             <div class="servico-card">
                 <i class="fas fa-swimming-pool servico-icon"></i>
@@ -590,52 +591,49 @@
         <h2 class="section-title">Nosso Portfólio</h2>
         
         <div class="portfolio-filters">
-            <button class="filter-btn active" onclick="filterPortfolio('todos')">Todos</button>
-            <button class="filter-btn" onclick="filterPortfolio('casas')">Casas</button>
-            <button class="filter-btn" onclick="filterPortfolio('piscinas')">Piscinas</button>
-            <button class="filter-btn" onclick="filterPortfolio('churrasqueiras')">Churrasqueiras</button>
+            <button class="filter-btn active" onclick="filterPortfolio('todos', event)">Todos</button>
+            <button class="filter-btn" onclick="filterPortfolio('casas', event)">Casas</button>
+            <button class="filter-btn" onclick="filterPortfolio('piscinas', event)">Piscinas</button>
+            <button class="filter-btn" onclick="filterPortfolio('churrasqueiras', event)">Churrasqueiras</button>
         </div>
 
         <div class="obras-container">
             <div class="obras-grid" id="portfolio-grid">
                 
-                <div class="obra-card item-casas visible"><a href="casa01.jpeg" class="portfolio-lightbox"><img src="casa01.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Fachada moderna</p></div></a></div>
-                <div class="obra-card item-casas visible"><a href="casa02.jpeg" class="portfolio-lightbox"><img src="casa02.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Banheiro moderno</p></div></a></div>
-                <div class="obra-card item-casas visible"><a href="casa03.jpeg" class="portfolio-lightbox"><img src="casa03.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Banheira moderna</p></div></a></div>
-                <div class="obra-card item-casas visible"><a href="casa04.jpeg" class="portfolio-lightbox"><img src="casa04.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Frente moderna</p></div></a></div>
-                <div class="obra-card item-casas extra"><a href="casa05.jpeg" class="portfolio-lightbox"><img src="casa05.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Detalhes modernos</p></div></a></div>
-                <div class="obra-card item-casas extra"><a href="casa06.jpeg" class="portfolio-lightbox"><img src="casa06.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Minimalismo</p></div></a></div>
-                <div class="obra-card item-casas extra"><a href="casa07.jpeg" class="portfolio-lightbox"><img src="escada1.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Minimalismo</p></div></a></div>
-                
-                <div class="obra-card item-casas extra"><a href="casa07.jpeg" class="portfolio-lightbox"><img src="obr1.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Projeto Residencial</p></div></a></div>
-                <div class="obra-card item-casas extra"><a href="casa08.jpeg" class="portfolio-lightbox"><img src="obr2.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Alto Padrão</p></div></a></div>
-                <div class="obra-card item-casas extra"><a href="casa09.jpeg" class="portfolio-lightbox"><img src="obr3.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Acabamento Fino</p></div></a></div>
+                <div class="obra-card item-casas visible"><a href="casa01.jpeg" class="portfolio-lightbox photo-item"><img src="casa01.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Fachada moderna</p></div></a></div>
+                <div class="obra-card item-casas visible"><a href="casa02.jpeg" class="portfolio-lightbox photo-item"><img src="casa02.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Banheiro moderno</p></div></a></div>
+                <div class="obra-card item-casas visible"><a href="casa03.jpeg" class="portfolio-lightbox photo-item"><img src="casa03.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Banheira moderna</p></div></a></div>
+                <div class="obra-card item-casas visible"><a href="casa04.jpeg" class="portfolio-lightbox photo-item"><img src="casa04.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Frente moderna</p></div></a></div>
+                <div class="obra-card item-casas extra"><a href="casa05.jpeg" class="portfolio-lightbox photo-item"><img src="casa05.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Detalhes modernos</p></div></a></div>
+                <div class="obra-card item-casas extra"><a href="casa06.jpeg" class="portfolio-lightbox photo-item"><img src="casa06.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Minimalismo</p></div></a></div>
+                <div class="obra-card item-casas extra"><a href="escada1.jpeg" class="portfolio-lightbox photo-item"><img src="escada1.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Minimalismo</p></div></a></div>
+                <div class="obra-card item-casas extra"><a href="obr1.jpeg" class="portfolio-lightbox photo-item"><img src="obr1.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Projeto Residencial</p></div></a></div>
+                <div class="obra-card item-casas extra"><a href="obr2.jpeg" class="portfolio-lightbox photo-item"><img src="obr2.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Alto Padrão</p></div></a></div>
+                <div class="obra-card item-casas extra"><a href="obr3.jpeg" class="portfolio-lightbox photo-item"><img src="obr3.jpeg" alt="Casa"><div class="obra-overlay"><h3>Exemplo</h3><p>Acabamento Fino</p></div></a></div>
 
-                <div class="obra-card item-casas extra"><a href="casavideo01.mp4" class="portfolio-lightbox"><video autoplay muted loop playsinline><source src="casavideo01.mp4" type="video/mp4"></video><div class="obra-overlay"><h3>Vídeo</h3><p>Tour Residencial</p></div></a></div>
-                <div class="obra-card item-casas extra"><a href="casavideo02.mp4" class="portfolio-lightbox"><video autoplay muted loop playsinline><source src="casavideo02.mp4" type="video/mp4"></video><div class="obra-overlay"><h3>Vídeo</h3><p>Tour Residencial</p></div></a></div>
-                <div class="obra-card item-casas extra"><a href="casavideo03.mp4" class="portfolio-lightbox"><video autoplay muted loop playsinline><source src="casavideo03.mp4" type="video/mp4"></video><div class="obra-overlay"><h3>Vídeo</h3><p>Tour Residencial</p></div></a></div>
-                <div class="obra-card item-casas extra"><a href="casavideo04.mp4" class="portfolio-lightbox"><video autoplay muted loop playsinline><source src="casavideo04.mp4" type="video/mp4"></video><div class="obra-overlay"><h3>Vídeo</h3><p>Tour Residencial</p></div></a></div>
+                <div class="obra-card item-casas extra"><a href="casavideo01.mp4" class="video-item"><video autoplay muted loop playsinline><source src="casavideo01.mp4" type="video/mp4"></video><div class="obra-overlay"><h3>Vídeo</h3><p>Tour Residencial</p></div></a></div>
+                <div class="obra-card item-casas extra"><a href="casavideo02.mp4" class="video-item"><video autoplay muted loop playsinline><source src="casavideo02.mp4" type="video/mp4"></video><div class="obra-overlay"><h3>Vídeo</h3><p>Tour Residencial</p></div></a></div>
+                <div class="obra-card item-casas extra"><a href="casavideo03.mp4" class="video-item"><video autoplay muted loop playsinline><source src="casavideo03.mp4" type="video/mp4"></video><div class="obra-overlay"><h3>Vídeo</h3><p>Tour Residencial</p></div></a></div>
+                <div class="obra-card item-casas extra"><a href="casavideo04.mp4" class="video-item"><video autoplay muted loop playsinline><source src="casavideo04.mp4" type="video/mp4"></video><div class="obra-overlay"><h3>Vídeo</h3><p>Tour Residencial</p></div></a></div>
 
-                <div class="obra-card item-piscinas visible"><a href="piscina01.jpeg" class="portfolio-lightbox"><img src="piscina01.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Iluminação moderna</p></div></a></div>
-                <div class="obra-card item-piscinas visible"><a href="piscina02.jpeg" class="portfolio-lightbox"><img src="piscina02.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Acabamento sutil</p></div></a></div>
-                <div class="obra-card item-piscinas visible"><a href="piscina03.jpeg" class="portfolio-lightbox"><img src="piscina03.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Detalhes verdes</p></div></a></div>
-                <div class="obra-card item-piscinas extra"><a href="piscina04.jpeg" class="portfolio-lightbox"><img src="piscina04.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Área gourmet</p></div></a></div>
-                <div class="obra-card item-piscinas extra"><a href="piscina05.jpeg" class="portfolio-lightbox"><img src="piscina05.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Acabamento suave</p></div></a></div>
-                <div class="obra-card item-piscinas extra"><a href="piscina06.jpeg" class="portfolio-lightbox"><img src="piscina06.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Projeto Personalizado</p></div></a></div>
-                
-                <div class="obra-card item-piscinas extra"><a href="piscina07.jpeg" class="portfolio-lightbox"><img src="psn1.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Lazer Completo</p></div></a></div>
-                <div class="obra-card item-piscinas extra"><a href="piscina08.jpeg" class="portfolio-lightbox"><img src="psn2.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Concreto Armado</p></div></a></div>
-                <div class="obra-card item-piscinas extra"><a href="piscina09.jpeg" class="portfolio-lightbox"><img src="psn3.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Design Moderno</p></div></a></div>
-                <div class="obra-card item-piscinas extra"><a href="piscina10.jpeg" class="portfolio-lightbox"><img src="psn4.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Borda Infinita</p></div></a></div>
-                <div class="obra-card item-piscinas extra"><a href="piscina11.jpeg" class="portfolio-lightbox"><img src="psn5.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Revestimento Nobre</p></div></a></div>
+                <div class="obra-card item-piscinas visible"><a href="piscina01.jpeg" class="portfolio-lightbox photo-item"><img src="piscina01.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Iluminação moderna</p></div></a></div>
+                <div class="obra-card item-piscinas visible"><a href="piscina02.jpeg" class="portfolio-lightbox photo-item"><img src="piscina02.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Acabamento sutil</p></div></a></div>
+                <div class="obra-card item-piscinas visible"><a href="piscina03.jpeg" class="portfolio-lightbox photo-item"><img src="piscina03.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Detalhes verdes</p></div></a></div>
+                <div class="obra-card item-piscinas extra"><a href="piscina04.jpeg" class="portfolio-lightbox photo-item"><img src="piscina04.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Área gourmet</p></div></a></div>
+                <div class="obra-card item-piscinas extra"><a href="piscina05.jpeg" class="portfolio-lightbox photo-item"><img src="piscina05.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Acabamento suave</p></div></a></div>
+                <div class="obra-card item-piscinas extra"><a href="piscina06.jpeg" class="portfolio-lightbox photo-item"><img src="piscina06.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Projeto Personalizado</p></div></a></div>
+                <div class="obra-card item-piscinas extra"><a href="psn1.jpeg" class="portfolio-lightbox photo-item"><img src="psn1.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Lazer Completo</p></div></a></div>
+                <div class="obra-card item-piscinas extra"><a href="psn2.jpeg" class="portfolio-lightbox photo-item"><img src="psn2.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Concreto Armado</p></div></a></div>
+                <div class="obra-card item-piscinas extra"><a href="psn3.jpeg" class="portfolio-lightbox photo-item"><img src="psn3.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Design Moderno</p></div></a></div>
+                <div class="obra-card item-piscinas extra"><a href="psn4.jpeg" class="portfolio-lightbox photo-item"><img src="psn4.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Borda Infinita</p></div></a></div>
+                <div class="obra-card item-piscinas extra"><a href="psn5.jpeg" class="portfolio-lightbox photo-item"><img src="psn5.jpeg" alt="Piscina"><div class="obra-overlay"><h3>Piscinas</h3><p>Revestimento Nobre</p></div></a></div>
 
-                <div class="obra-card item-churrasqueiras visible"><a href="churrasqueira01.jpeg" class="portfolio-lightbox"><img src="churrasqueira01.jpeg" alt="Churrasqueira"><div class="obra-overlay"><h3>Área Gourmet</h3><p>Porcelanatos Premium</p></div></a></div>
-                <div class="obra-card item-churrasqueiras visible"><a href="churrasqueira02.jpeg" class="portfolio-lightbox"><img src="churrasqueira02.jpeg" alt="Churrasqueira"><div class="obra-overlay"><h3>Área Gourmet</h3><p>Balcões modernos</p></div></a></div>
+                <div class="obra-card item-churrasqueiras visible"><a href="churrasqueira01.jpeg" class="portfolio-lightbox photo-item"><img src="churrasqueira01.jpeg" alt="Churrasqueira"><div class="obra-overlay"><h3>Área Gourmet</h3><p>Porcelanatos Premium</p></div></a></div>
+                <div class="obra-card item-churrasqueiras visible"><a href="churrasqueira02.jpeg" class="portfolio-lightbox photo-item"><img src="churrasqueira02.jpeg" alt="Churrasqueira"><div class="obra-overlay"><h3>Área Gourmet</h3><p>Balcões modernos</p></div></a></div>
+                <div class="obra-card item-churrasqueiras extra"><a href="churras1.jpeg" class="portfolio-lightbox photo-item"><img src="churras1.jpeg" alt="Churrasqueira"><div class="obra-overlay"><h3>Área Gourmet</h3><p>Espaço Integrado</p></div></a></div>
+                <div class="obra-card item-churrasqueiras extra"><a href="churras2.jpeg" class="portfolio-lightbox photo-item"><img src="churras2.jpeg" alt="Churrasqueira"><div class="obra-overlay"><h3>Área Gourmet</h3><p>Design Funcional</p></div></a></div>
                 
-                <div class="obra-card item-churrasqueiras extra"><a href="churrasqueira03.jpeg" class="portfolio-lightbox"><img src="churras1.jpeg" alt="Churrasqueira"><div class="obra-overlay"><h3>Área Gourmet</h3><p>Espaço Integrado</p></div></a></div>
-                <div class="obra-card item-churrasqueiras extra"><a href="churrasqueira04.jpeg" class="portfolio-lightbox"><img src="churras2.jpeg" alt="Churrasqueira"><div class="obra-overlay"><h3>Área Gourmet</h3><p>Design Funcional</p></div></a></div>
-                
-                <div class="obra-card item-churrasqueiras visible"><a href="churrasqueiravideo.mp4" class="portfolio-lightbox"><video autoplay muted loop playsinline><source src="churrasqueiravideo.mp4" type="video/mp4"></video><div class="obra-overlay"><h3>Área Gourmet</h3><p>Lazer completo</p></div></a></div>
+                <div class="obra-card item-churrasqueiras visible"><a href="churrasqueiravideo.mp4" class="video-item"><video autoplay muted loop playsinline><source src="churrasqueiravideo.mp4" type="video/mp4"></video><div class="obra-overlay"><h3>Área Gourmet</h3><p>Lazer completo</p></div></a></div>
 
             </div>
 
@@ -706,25 +704,41 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.0/simple-lightbox.min.js"></script>
     <script>
-        // Variável global do Lightbox
-        let lightbox;
+        let lightboxPhotos;
+        let lightboxVideos;
 
         function initLightbox() {
-            // Se já existir, destrói para resetar a lista de imagens
-            if (lightbox) {
-                lightbox.destroy();
-            }
-            // Inicializa apenas nos links que têm a classe 'active-lightbox'
-            lightbox = new SimpleLightbox('.active-lightbox', {
+            // Destrói anteriores para evitar bugs
+            if (lightboxPhotos) lightboxPhotos.destroy();
+            if (lightboxVideos) lightboxVideos.destroy();
+
+            // Galeria 1: Apenas fotos visíveis (com slide entre elas)
+            lightboxPhotos = new SimpleLightbox('.obra-card.visible a.photo-item', {
                 overlayOpacity: 0.9,
                 navText: ['<i class="fas fa-chevron-left"></i>','<i class="fas fa-chevron-right"></i>'],
-                captionDelay: 250,
-                urlAttribute: 'href',
-                fileExt: 'png|jpg|jpeg|gif|mp4|webm',
-                videoRegex: /mp4|webm|youtube\.com|vimeo\.com/i,
-                alertError: false,
+                close: true,
+                showCounter: true,
                 enableKeyboard: true,
-                close: true
+                docClose: true,
+                disableScroll: true
+            });
+
+            // Galeria 2: Apenas vídeos visíveis (não passa slide para as fotos)
+            lightboxVideos = new SimpleLightbox('.obra-card.visible a.video-item', {
+                overlayOpacity: 0.9,
+                close: true,
+                showCounter: false, // Não mostra contador pois são independentes
+                videoRegex: /\.(mp4|webm|ogv)$/i,
+            });
+
+            // Forçar vídeos mudos e autoplay no lightbox
+            lightboxVideos.on('shown.simplelightbox', function() {
+                const video = document.querySelector('.sl-wrapper video');
+                if(video) {
+                    video.muted = true;
+                    video.setAttribute('muted', '');
+                    video.play();
+                }
             });
         }
 
@@ -742,11 +756,12 @@
         // LÓGICA DO PORTFÓLIO
         let currentFilter = 'todos';
 
-        function filterPortfolio(category) {
+        function filterPortfolio(category, event) {
+            if (event) event.preventDefault();
             currentFilter = category;
             
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            if(event && event.target.classList.contains('filter-btn')) event.target.classList.add('active');
+            if (event && event.target) event.target.classList.add('active');
 
             const allCards = document.querySelectorAll('.obra-card');
             const btnShowMore = document.getElementById('btn-show-more');
@@ -754,33 +769,20 @@
             let hasExtra = false;
 
             allCards.forEach(card => {
-                const link = card.querySelector('a');
                 card.classList.remove('visible');
-                link.classList.remove('active-lightbox'); // Remove de todos primeiro
-                
-                if (category === 'todos') {
-                    if (!card.classList.contains('extra')) {
-                        card.classList.add('visible');
-                        link.classList.add('active-lightbox');
-                    } else {
-                        hasExtra = true;
-                    }
-                } else {
-                    if (card.classList.contains('item-' + category)) {
-                        if (!card.classList.contains('extra')) {
-                            card.classList.add('visible');
-                            link.classList.add('active-lightbox');
-                        } else {
-                            hasExtra = true;
-                        }
-                    }
+                const isCorrectCategory = (category === 'todos' || card.classList.contains('item-' + category));
+                const isExtra = card.classList.contains('extra');
+
+                if (isCorrectCategory) {
+                    if (!isExtra) card.classList.add('visible');
+                    else hasExtra = true;
                 }
             });
 
             btnShowMore.style.display = hasExtra ? 'block' : 'none';
             btnShowLess.style.display = 'none';
             
-            initLightbox(); // Reinicia o lightbox com as fotos visíveis
+            initLightbox();
         }
 
         function showMore() {
@@ -788,21 +790,16 @@
             allExtraCards.forEach(card => {
                 if (currentFilter === 'todos' || card.classList.contains('item-' + currentFilter)) {
                     card.classList.add('visible');
-                    card.querySelector('a').classList.add('active-lightbox');
                 }
             });
             document.getElementById('btn-show-more').style.display = 'none';
             document.getElementById('btn-show-less').style.display = 'block';
-            
-            initLightbox(); // Atualiza para incluir os novos itens
+            initLightbox();
         }
 
         function showLess() {
             const allExtraCards = document.querySelectorAll('.obra-card.extra');
-            allExtraCards.forEach(card => {
-                card.classList.remove('visible');
-                card.querySelector('a').classList.remove('active-lightbox');
-            });
+            allExtraCards.forEach(card => card.classList.remove('visible'));
             document.getElementById('btn-show-more').style.display = 'block';
             document.getElementById('btn-show-less').style.display = 'none';
             
@@ -810,8 +807,7 @@
                 top: document.getElementById('obras').offsetTop - 80,
                 behavior: 'smooth'
             });
-            
-            initLightbox(); // Atualiza para remover os itens escondidos
+            initLightbox();
         }
 
         // Smooth Scroll
@@ -831,7 +827,6 @@
             });
         });
 
-        // Inicializar o filtro ao carregar
         window.onload = () => filterPortfolio('todos');
     </script>
 </body>
